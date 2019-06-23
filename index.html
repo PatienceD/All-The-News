@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All The News</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <script type="text/javascript" src="app.js"></script>
+
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-4">All the News, Mongo Scraper!</h1>
+        <p class="lead">New York Times edition.</p>
+        <hr class="my-4">
+        <p>Click on the "scrape new articles" button to get information on the articles from the New York Times website!
+        </p>
+        <p>If you save an article, click on the "Saved Articles" button to see them.</p>
+        <a class="btn btn-lg" href="#" id="scrape-btn" role="button">Scrape New Articles</a>
+        <a class="btn btn-lg" href="./saved.html" id="save-btn" role="button">Saved Articles</a>
+        <a class="btn btn-lg" id="comment" href="./comments.html" role="button">View your comments</a>
+
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3>Scraped Articles</h3>
+        </div>
+        <div class="card-body">
+            <h5 id="title">This is the title</h5>
+            <p id="description">This is the article description.</p>
+            <p id="link"></p>
+            <a class="btn btn-lg" id="save-btn" href="#" role="button">Save This Article!</a>
+            <hr>
+
+        </div>
+    </div>
+
+
+    <style>
+        #scrape-btn,
+        #save-btn,
+        #comment {
+            background-color: lightslategray;
+            font-size: 15px;
+            color: white;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

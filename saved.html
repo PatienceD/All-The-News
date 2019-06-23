@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All The News</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-4">All the News, Mongo Scraper!</h1>
+        <p class="lead">New York Times edition.</p>
+        <hr class="my-4">
+        <p>This is where you can view your saved articles.</p>
+        <a class="btn btn-lg" id="home-btn" href="./index.html" role="button"><i class="fas fa-home"></i></a>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3>Your Saved Articles</h3>
+        </div>
+        <div class="card-body">
+            <h5 id="title">This is the title</h5>
+            <p id="description">This is the article description.</p>
+            <p id="link"></p>
+            <button type="button" class="btn btn-lg" id="comment" data-toggle="modal" data-target="#exampleModal">
+                Comment on this article
+            </button>
+            <a class="btn btn-lg" id="comment" href="./comments.html" role="button">View your comments</a>
+            <hr>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">What would you like to comment on this
+                                article?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Comment</label>
+                                    <input type="comment" class="form-control" id="article-comment"
+                                        aria-describedby="emailHelp"
+                                        placeholder="This article was so interesting to read!">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn" id="close-btn" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn" id="submit-btn">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Modal End-->
+
+
+        </div>
+    </div>
+
+    <style>
+        #comment,
+        #scrape-btn,
+        #save-btn,
+        #home-btn,
+        #submit-btn,
+        #close-btn {
+            background-color: lightslategray;
+            font-size: 15px;
+            color: white;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
