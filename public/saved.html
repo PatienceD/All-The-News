@@ -4,8 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>All The News</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
 </head>
 
 <body>
@@ -21,9 +24,9 @@
             <h3>Your Saved Articles</h3>
         </div>
         <div class="card-body">
-            <h5 id="title">This is the title</h5>
-            <p id="description">This is the article description.</p>
-            <p id="link"></p>
+            <h5 id="title-saved-display">This is the title</h5>
+            <p id="description-saved-display">This is the article description.</p>
+            <p id="link-saved-display"></p>
             <button type="button" class="btn btn-lg" id="comment" data-toggle="modal" data-target="#exampleModal">
                 Comment on this article
             </button>
@@ -45,15 +48,14 @@
                             <form>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Comment</label>
-                                    <input type="comment" class="form-control" id="article-comment"
-                                        aria-describedby="emailHelp"
+                                    <input type="comment" class="form-control" id="modal-article-comment"
                                         placeholder="This article was so interesting to read!">
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn" id="close-btn" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn" id="submit-btn">Submit</button>
+                            <button type="submit" class="btn" id="submit-btn" data-dismiss="modal">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -77,7 +79,6 @@
         }
     </style>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
