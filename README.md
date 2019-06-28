@@ -5,9 +5,13 @@ All the News is an application that lets users scrape news articles from ycombin
 View here: https://safe-fjord-41450.herokuapp.com/
 
 Technologies Used:
+
 Frontend:
+
     ~ HTML
+
     ~ CSS
+    
     ~ JavaScript(jQuery)
 
 Backend:
