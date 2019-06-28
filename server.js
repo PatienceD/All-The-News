@@ -1,66 +1,79 @@
 //if deployed, use the deployed database. Otherwise use the local mongoHeadlines databae
-let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+// let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 //connect to the Mongo DB
 // mongoose.connect(MONGODB_URI);
 
 // // Dependencies
-// var express = require("express");
-// var mongojs = require("mongojs");
+var express = require("express");
+var morgan = require("morgan");
+var mongoose = require("mongoose");
 // var path = require('path');
+
 // // Require axios and cheerio. This makes the scraping possible
-// var axios = require("axios");
-// var cheerio = require("cheerio");
+var axios = require("axios");
+var cheerio = require("cheerio");
 
-// // Initialize Express
-// var app = express();
+var db = require("./models");
+var PORT = 3000;
+var app = express();
 
-// // Database configuration
-// var databaseUrl = "scraper";
-// var collections = ["scrapedData"];
+app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
 
-// // Hook mongojs configuration to the db variable
-// var db = mongojs(databaseUrl, collections);
-// db.on("error", function (error) {
-//     console.log("Database Error:", error);
-// });
-
-// // Simple index route
-// app.get("/", function (req, res) {
-//     res.sendFile(path.join(__dirname + "/public/index.html"));
-// });
+mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
 
-// // Make a request via axios for the news section of `ycombinator`
-// axios.get("https://www.nytimes.com/").then(function (response) {
-//     // Load the html body from axios into cheerio
-//     var $ = cheerio.load(response.data);
+app.get("/scrape", function (req, res) {
+    axios.get("https://news.ycombinator.com/").then(function (response) {
+        var $ = cheerio.load(response.data);
 
-//     // An empty array to save the data that we'll scrape
-//     var results = [];
+        $(".title").each(function (i, element) {
 
-//     // Select each element in the HTML body from which you want information.
-//     // NOTE: Cheerio selectors function similarly to jQuery's selectors,
-//     // but be sure to visit the package's npm page to see how it works
-//     $("article").each(function (i, element) {
+            var result = {};
 
-//         var title = $(element).children().text();
-//         var link = $(element).find("a").attr("href");
+            result.title = $(this).children("a").text();
+            result.link = $(this).children("a").attr("href");
 
-//         // Save these results in an object that we'll push into the results array we defined earlier
-//         results.push({
-//             title: title,
-//             link: link
-//         });
-//     });
-//     console.log(results);
+            db.Article.create(result).then(function (data) {
+                console.log(data);
+            }).catch(function (err) {
+                if (err) throw (err);
+            });
+        });
 
-// });
+        res.send("Scrape Finished");
+    });
+});
 
+app.get("/articles", function (req, res) {
+    db.Article.find({}).then(function (data) {
+        res.json(data);
+    }).catch(function (err) {
+        res.json(err);
+    });
+});
 
+app.get("/articles/:id", function (req, res) {
+    db.Article.findOne({ _id: req.params.id }).populate("note").then(function (data) {
+        res.json(data);
+    }).catch(function (err) {
+        res.json(err);
+    });
+});
 
+app.post("/articles/:id", function (req, res) {
+    db.Note.create(req.body).then(function (data) {
+        return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+    }).then(function (data) {
+        res.json(data);
+    }).catch(function (err) {
+        res.json(err);
+    });
+});
 
-// // Listen on port 3000
-// app.listen(3000, function () {
-//     console.log("App running on port 3000!");
-// });
+app.listen(PORT, function () {
+    console.log("Listening on http://localhost:" + PORT);
+});

@@ -13,29 +13,18 @@
 <body>
     <div class="jumbotron">
         <h1 class="display-4">All the News, Mongo Scraper!</h1>
-        <p class="lead">New York Times edition.</p>
+        <p class="lead">ycombinator edition.</p>
         <hr class="my-4">
-        <p>Click on the "scrape new articles" button to get information on the articles from the New York Times website!
+        <p>Type in "/scrape" into the URL above to scrape new articles! After that, click each article to add a note.
         </p>
-        <p>If you save an article, click on the "Saved Articles" button to see them.</p>
-        <a class="btn btn-lg" href="#" id="scrape-btn" role="button">Scrape New Articles</a>
-        <a class="btn btn-lg" href="/saved" id="save-btn" role="button">Saved Articles</a>
-        <a class="btn btn-lg" id="comment" href="./comments.html" role="button">View your comments</a>
-
     </div>
-    <div class="card">
-        <div class="card-header">
-            <h3>Scraped Articles</h3>
-        </div>
-        <div class="card-body">
-            <h5 id="title-home-display">This is the title</h5>
-            <p id="description-home-display">This is the article description.</p>
-            <p id="link-home-display"></p>
-            <a class="btn btn-lg" id="save-btn" href="#" role="button">Save This Article!</a>
-            <hr>
 
-        </div>
+    <div id="wrapper">
+        <div id="articles"></div>
+        <div id="notes"></div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="app.js"></script>
 
 
     <style>
@@ -46,9 +35,45 @@
             font-size: 15px;
             color: white;
         }
+
+        /* --------------------------------------------- */
+        #wrapper {
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 5%;
+        }
+
+        #articles {
+            display: inline-block;
+            overflow: auto;
+            width: 60%;
+            height: 700px;
+        }
+
+        #notes {
+            float: right;
+            width: 30%;
+        }
+
+        textarea,
+        input {
+            display: block;
+            width: 100%;
+            background-color: #FCF5C7;
+        }
+
+        input {
+            height: 36px;
+            font-size: 24px;
+        }
+
+        textarea {
+            height: 200px;
+            font-size: 18px;
+        }
     </style>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
